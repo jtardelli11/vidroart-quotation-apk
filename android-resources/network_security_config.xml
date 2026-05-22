@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Configuração de segurança de rede do Android.
+  Permite HTTPS para GitHub Pages e bloqueia HTTP puro.
+  Coloque em: android/app/src/main/res/xml/network_security_config.xml
+-->
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="false">
+    <!-- GitHub Pages (domínio principal) -->
+    <domain includeSubdomains="true">github.io</domain>
+    <!-- jsDelivr / CDN de fontes usados pelo site -->
+    <domain includeSubdomains="true">cdnjs.cloudflare.com</domain>
+    <domain includeSubdomains="true">fonts.googleapis.com</domain>
+    <domain includeSubdomains="true">fonts.gstatic.com</domain>
+    <!-- Imgur (imagens do sistema) -->
+    <domain includeSubdomains="true">i.imgur.com</domain>
+  </domain-config>
+</network-security-config>

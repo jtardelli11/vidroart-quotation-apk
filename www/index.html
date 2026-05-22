@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>VIDROART Orçamentos</title>
+  <style>
+    :root {
+      --bg: #0f1512;
+      --accent: #1e8449;
+      --text: #eef4f0;
+      --muted: rgba(238,244,240,0.65);
+      --card: rgba(255,255,255,0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top left, rgba(30,132,73,0.28), transparent 35%),
+                  linear-gradient(180deg,#111914,#0f1512 50%,#0b110e);
+      font-family: -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      padding: 24px;
+    }
+
+    .card {
+      width: min(380px, 100%);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 40px 32px 36px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.45);
+    }
+
+    .logo-wrap {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* Offline notice */
+    #offlineBox {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #offlineBox.show { display: flex; }
+
+    .offline-icon { font-size: 2.8rem; }
+
+    .offline-msg {
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .btn-retry {
+      margin-top: 8px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(180deg,#219a55,var(--accent));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(30,132,73,0.35);
+      transition: transform .18s, opacity .18s;
+      width: 100%;
+    }
+
+    .btn-retry:active { transform: scale(.97); opacity: .88; }
+
+    /* Loading state */
+    #loadingBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .spinner {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(30,132,73,0.25);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-msg {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 0.75rem;
+      color: rgba(238,244,240,0.35);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo-wrap">🪟</div>
+  <h1>VIDROART</h1>
+  <p class="subtitle">Orçamentos sob medida</p>
+
+  <!-- Estado: carregando -->
+  <div id="loadingBox">
+    <div class="spinner"></div>
+    <p class="loading-msg">Carregando o sistema...</p>
+  </div>
+
+  <!-- Estado: sem internet -->
+  <div id="offlineBox">
+    <div class="offline-icon">📡</div>
+    <p class="offline-msg">
+      Sem conexão com a internet.<br>
+      O VIDROART precisa de internet para carregar.<br>
+      Verifique seu Wi-Fi ou dados móveis.
+    </p>
+    <button class="btn-retry" onclick="tentarNovamente()">
+      ↺ Tentar novamente
+    </button>
+  </div>
+
+  <p class="footer">&copy; 2025 VIDROART. Acesso restrito.</p>
+</div>
+
+<script>
+  const TARGET_URL = 'https://jtardelli11.github.io/vidroart-quotation-html/';
+
+  function mostrarOffline() {
+    document.getElementById('loadingBox').style.display = 'none';
+    document.getElementById('offlineBox').classList.add('show');
+  }
+
+  function tentarNovamente() {
+    document.getElementById('offlineBox').classList.remove('show');
+    document.getElementById('loadingBox').style.display = 'flex';
+    setTimeout(verificarENavegar, 800);
+  }
+
+  async function verificarENavegar() {
+    try {
+      const res = await fetch(TARGET_URL, { method: 'HEAD', cache: 'no-store', signal: AbortSignal.timeout(8000) });
+      if (res.ok) {
+        window.location.href = TARGET_URL;
+      } else {
+        mostrarOffline();
+      }
+    } catch {
+      mostrarOffline();
+    }
+  }
+
+  // Inicia verificação após 1s (aguarda splash screen)
+  setTimeout(verificarENavegar, 1000);
+</script>
+
+</body>
+</html>

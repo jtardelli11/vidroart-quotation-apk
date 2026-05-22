@@ -1,0 +1,270 @@
+/*
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  VIDROART — Melhorias mobile para o site do GitHub Pages
+ *  Arquivo: mobile-improvements.css
+ *
+ *  Como usar: adicione este <link> no <head> do index.html do seu repositório:
+ *  <link rel="stylesheet" href="css/mobile-improvements.css">
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/* ─── Reset & viewport ────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Evita zoom automático em inputs no iOS/Android */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Scroll suave */
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Evita scroll horizontal indesejado */
+  overflow-x: hidden;
+  /* Toque mais responsivo */
+  -webkit-tap-highlight-color: rgba(30, 132, 73, 0.18);
+}
+
+/* ─── Inputs e selects — tamanho mínimo para evitar zoom no Android ──────── */
+input,
+select,
+textarea {
+  font-size: 16px !important; /* abaixo de 16px o Android faz zoom ao focar */
+  min-height: 48px;           /* área de toque mínima recomendada (Material) */
+  border-radius: 12px;
+}
+
+input[type="color"] {
+  min-height: 48px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  min-height: 32px;
+  cursor: pointer;
+}
+
+/* ─── Botões — área de toque generosa ───────────────────────────────────── */
+button,
+.btn-green,
+.btn-black,
+.btn-outline,
+[role="button"] {
+  min-height: 48px;
+  min-width: 48px;
+  padding-inline: 20px;
+  font-size: 0.97rem;
+  touch-action: manipulation; /* remove delay de 300ms */
+  cursor: pointer;
+}
+
+/* ─── Formulários — layout vertical em telas pequenas ───────────────────── */
+@media (max-width: 640px) {
+
+  /* Header compacto */
+  .site-header .page-shell,
+  .header-inner {
+    padding-inline: 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .header-nav {
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+
+  /* Hero menor */
+  .hero-section {
+    padding-block: 32px 24px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-actions .btn-green,
+  .hero-actions .btn-black {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Cards e seções com padding menor */
+  .glass-card,
+  .form-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .page-shell {
+    padding-inline: 14px;
+  }
+
+  /* Grid de formulário — coluna única em mobile */
+  .form-grid,
+  .product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .field-group-wide {
+    grid-column: 1 !important;
+  }
+
+  /* Botões de ação empilhados */
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions button,
+  .form-actions .btn-green,
+  .form-actions .btn-black,
+  .form-actions .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Gestão financeira — grid 2 colunas no mobile */
+  .finance-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .finance-card {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  /* Painel de relatórios */
+  .panel-header-inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .report-actions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .report-actions button {
+    flex: 1;
+    font-size: 0.82rem;
+    padding-inline: 10px;
+  }
+
+  /* Modal — tela quase cheia */
+  .modal-card {
+    width: calc(100vw - 24px) !important;
+    max-height: 92dvh !important;
+    overflow-y: auto;
+    border-radius: 22px 22px 0 0;
+    margin-top: auto;
+  }
+
+  /* Filtros do histórico — coluna única */
+  .history-filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .history-filters input,
+  .history-filters select,
+  .history-filters button {
+    width: 100%;
+  }
+
+  /* Lista de produtos — cards em vez de tabela */
+  .products-list {
+    gap: 12px;
+  }
+
+  /* Tabelas: scroll horizontal em vez de estouro */
+  table,
+  .table-wrap {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+}
+
+/* ─── Samsung Galaxy S22 Ultra e telas >900px ────────────────────────────── */
+@media (min-width: 900px) and (max-width: 1100px) {
+
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .finance-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─── Safe areas (notch / barra de gestos do Android) ────────────────────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .modal-card {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+}
+
+/* ─── Imagens de produto — proporção correta no mobile ───────────────────── */
+.product-image,
+.product-img,
+img[src*="produto"],
+img[src*="product"] {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ─── PDF preview no mobile ──────────────────────────────────────────────── */
+canvas,
+.pdf-canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* ─── Scroll suave em listas ─────────────────────────────────────────────── */
+.history-list,
+.products-list {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* ─── Animações reduzidas para dispositivos que preferem ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

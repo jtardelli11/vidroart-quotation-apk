@@ -16,3 +16,4 @@
     <domain includeSubdomains="true">i.imgur.com</domain>
   </domain-config>
 </network-security-config>
+ 

@@ -403,3 +403,4 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 *Desenvolvido para VIDROART — Sistema de Orçamentos*  
 *Capacitor v6 · Android SDK 34 · minSdk 24*
+ 

@@ -2,11 +2,6 @@
   "appId": "com.vidroart.orcamentos",
   "appName": "VIDROART Orçamentos",
   "webDir": "www",
-  "server": {
-    "url": "https://jtardelli11.github.io/vidroart-quotation-html/",
-    "cleartext": false,
-    "androidScheme": "https"
-  },
   "android": {
     "allowMixedContent": false,
     "backgroundColor": "#0f1512"
@@ -24,5 +19,4 @@
       "backgroundColor": "#0f1512"
     }
   }
-} 
- 
+}

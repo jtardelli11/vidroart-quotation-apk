@@ -17,6 +17,12 @@
     "StatusBar": {
       "style": "Dark",
       "backgroundColor": "#0f1512"
+    },
+    "Camera": {
+      "permissions": ["camera"]
+    },
+    "Filesystem": {
+      "permissions": ["storage"]
     }
   }
 }

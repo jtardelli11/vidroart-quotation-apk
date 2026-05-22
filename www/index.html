@@ -29,10 +29,8 @@
           <span class="brand-subtitle">Orcamentos sob medida</span>
         </div>
       </a>
-
       <nav class="header-nav" aria-label="Navegacao principal">
         <a href="#orcamento">Orcamento</a>
-        <a href="#gestaoFinanceira">Gestao</a>
         <button id="btnHistorico" type="button" class="header-history-btn">
           <i class="fas fa-clock-rotate-left"></i>
           Historico
@@ -46,15 +44,11 @@
       <div class="page-shell hero-content">
         <div class="hero-copy">
           <p class="hero-kicker">VIDROART</p>
-          <h1>Organize seus pedidos com mais agilidade, precisão e eficiência.</h1>
-          <p class="hero-description">
-            Atendimento profissional ao cliente e projetos sob medida.
-          </p>
+          <h1>Organize seus pedidos com agilidade e precisão.</h1>
+          <p class="hero-description">Atendimento profissional ao cliente e projetos sob medida.</p>
           <div class="hero-actions">
             <a href="#orcamento" class="btn-green">Criar Orcamento</a>
-            <button type="button" class="btn-black" onclick="document.getElementById('btnHistorico')?.click()">
-              Ver Historico
-            </button>
+            <button type="button" class="btn-black" onclick="document.getElementById('btnHistorico')?.click()">Ver Historico</button>
           </div>
         </div>
       </div>
@@ -65,40 +59,35 @@
         <div class="section-title">
           <p class="section-eyebrow">Painel principal</p>
           <h2>Gerador de Orcamentos</h2>
-          <p class="section-description">
-            Preencha os dados do cliente, adicione os produtos e gere o PDF. As fotos sao compactadas para evitar arquivos pesados ou corrompidos.
-          </p>
+          <p class="section-description">Preencha os dados do cliente, adicione os produtos e gere o PDF.</p>
         </div>
 
         <div class="glass-card form-card">
           <form class="budget-form" onsubmit="return false;">
+
+            <!-- Dados do Cliente -->
             <div class="form-block">
               <div class="block-heading">
                 <h3>Dados do Cliente</h3>
-                <p>Esses dados aparecem no PDF e ajudam no envio pelo WhatsApp e no historico.</p>
+                <p>Esses dados aparecem no PDF e ajudam no envio pelo WhatsApp.</p>
               </div>
-
               <div class="form-grid">
                 <label class="field-group">
                   <span>Nome do cliente</span>
                   <input type="text" id="clienteNome" class="input-field" placeholder="Ex: Joao da Silva">
                 </label>
-
                 <label class="field-group">
                   <span>Telefone</span>
                   <input type="text" id="clienteTelefone" class="input-field" placeholder="Ex: (35) 99999-9999">
                 </label>
-
                 <label class="field-group">
                   <span>E-mail</span>
                   <input type="email" id="clienteEmail" class="input-field" placeholder="cliente@email.com">
                 </label>
-
                 <label class="field-group">
                   <span>Endereco da obra</span>
                   <input type="text" id="clienteEndereco" class="input-field" placeholder="Rua, numero, bairro">
                 </label>
-
                 <label class="field-group field-group-wide">
                   <span>Desconto</span>
                   <div class="discount-box">
@@ -114,85 +103,80 @@
 
             <div class="divider"></div>
 
+            <!-- Produto -->
             <div class="form-block">
               <div class="block-heading">
                 <h3>Produto</h3>
-                <p>Os campos de nome, medidas, quantidade, tipo de vidro e valor unitario sao obrigatorios.</p>
+                <p>Nome, medidas, quantidade, tipo de vidro e valor unitario sao obrigatorios.</p>
               </div>
-
               <div class="product-grid">
                 <label class="field-group field-group-wide">
                   <span>Nome do produto</span>
                   <input type="text" id="produtoNome" class="input-field" placeholder="Ex: Box incolor 8mm">
                 </label>
-
                 <label class="field-group">
                   <span>Largura (mm)</span>
                   <input type="number" id="produtoLargura" class="input-field" placeholder="Ex: 1200" min="0" step="0.01">
                 </label>
-
                 <label class="field-group">
                   <span>Altura (mm)</span>
                   <input type="number" id="produtoAltura" class="input-field" placeholder="Ex: 2100" min="0" step="0.01">
                 </label>
-
                 <label class="field-group">
                   <span>Quantidade</span>
                   <input type="number" id="produtoQtd" class="input-field" placeholder="1" value="1" min="1" step="1">
                 </label>
-
                 <label class="field-group">
                   <span>Tipo de vidro</span>
                   <input type="text" id="produtoVidro" class="input-field" placeholder="Ex: Temperado, fume">
                 </label>
-
                 <label class="field-group">
-                  <span>Observações</span>
+                  <span>Observacoes</span>
                   <input type="number" id="produtoArea" class="input-field" placeholder="Opcional" min="0" step="0.01">
                 </label>
-
                 <label class="field-group">
                   <span>Valor unitario (R$)</span>
                   <input type="number" id="produtoUnitario" class="input-field" placeholder="Ex: 850.00" min="0" step="0.01">
                 </label>
-
                 <label class="field-group">
                   <span>Cor</span>
                   <input type="color" id="produtoCor" class="input-field color-input" value="#ffffff">
                 </label>
-
                 <label class="field-group">
                   <span>Nome da cor</span>
                   <input type="text" id="produtoCorNome" class="input-field" placeholder="Ex: Bronze, Fume">
                 </label>
 
-                <label class="field-group field-group-wide">
+                <!-- Foto: arquivo ou câmera -->
+                <div class="field-group field-group-wide">
                   <span>Foto do produto</span>
-                  <input type="file" id="produtoFoto" class="input-field file-input" accept="image/*">
-                  <small class="helper-text">A imagem sera reduzida para evitar erro no PDF e no historico.</small>
-                </label>
+                  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                    <label style="flex:1;min-width:160px;">
+                      <input type="file" id="produtoFoto" class="input-field file-input" accept="image/*">
+                    </label>
+                    <button type="button" id="btnTirarFoto" class="btn-outline" onclick="tirarFotoComCamera()" style="min-width:140px;">
+                      <i class="fas fa-camera"></i>
+                      <span>Tirar Foto</span>
+                    </button>
+                  </div>
+                  <img id="previewFotoCamera" class="hidden" src="" alt="Preview" style="margin-top:10px;width:120px;height:120px;object-fit:cover;border-radius:16px;border:1px solid rgba(255,255,255,0.12);">
+                  <small class="helper-text">Escolha um arquivo ou tire uma foto com a camera.</small>
+                </div>
               </div>
             </div>
 
             <div class="form-actions">
               <button type="button" class="btn-green" id="adicionarProdutoBtn" onclick="adicionarProduto()">
-                <i class="fas fa-plus"></i>
-                Adicionar Produto
+                <i class="fas fa-plus"></i> Adicionar Produto
               </button>
-
               <button type="button" class="btn-green hidden" id="salvarEdicaoBtn" onclick="salvarEdicaoProduto()">
-                <i class="fas fa-save"></i>
-                Salvar Edicao
+                <i class="fas fa-save"></i> Salvar Edicao
               </button>
-
               <button type="button" class="btn-black" onclick="gerarPDF()">
-                <i class="fas fa-file-pdf"></i>
-                Gerar Orcamento
+                <i class="fas fa-file-pdf"></i> Gerar Orcamento
               </button>
-
               <button type="button" class="btn-outline" onclick="limparCamposProduto()">
-                <i class="fas fa-broom"></i>
-                Limpar Campos
+                <i class="fas fa-broom"></i> Limpar Campos
               </button>
             </div>
           </form>
@@ -202,52 +186,9 @@
               <h3>Produtos Adicionados</h3>
               <p>Confira a lista antes de gerar o PDF.</p>
             </div>
-
             <div id="listaProdutos" class="products-list">
               <p class="empty-message" id="noProductsMessage">Nenhum produto adicionado ainda.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-block">
-      <div class="page-shell">
-        <div id="gestaoFinanceira" class="glass-card finance-panel">
-          <div class="panel-header panel-header-inline">
-            <div>
-              <p class="section-eyebrow">Resumo do mes</p>
-              <h3>Gestao Financeira</h3>
-            </div>
-            <div class="report-actions">
-              <button type="button" class="btn-outline" onclick="exportarRelatorio('pdf')">
-                <i class="fas fa-file-export"></i>
-                Exportar PDF
-              </button>
-              <button type="button" class="btn-outline" onclick="exportarRelatorio('excel')">
-                <i class="fas fa-table"></i>
-                Exportar Excel
-              </button>
-            </div>
-          </div>
-
-          <div class="finance-grid">
-            <article class="finance-card">
-              <span>Total orcado</span>
-              <strong id="totalOrcado">R$ 0,00</strong>
-            </article>
-            <article class="finance-card">
-              <span>Total aprovado</span>
-              <strong id="totalAprovado">R$ 0,00</strong>
-            </article>
-            <article class="finance-card">
-              <span>Lucro estimado</span>
-              <strong id="lucroEstimado">R$ 0,00</strong>
-            </article>
-            <article class="finance-card">
-              <span>Conversao</span>
-              <strong id="percentualConversao">0,0%</strong>
-            </article>
           </div>
         </div>
       </div>
@@ -256,10 +197,11 @@
 
   <footer class="site-footer">
     <div class="page-shell">
-      <p>&copy; 2025 VIDROART. Sistema de orcamentos e historico interno.</p>
+      <p>&copy; 2025 VIDROART. Sistema de orcamentos interno.</p>
     </div>
   </footer>
 
+  <!-- Modal Histórico -->
   <div id="modalHistorico" class="modal hidden" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal="true"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="tituloHistorico">
@@ -272,13 +214,10 @@
           <i class="fas fa-xmark"></i>
         </button>
       </div>
-
       <ul id="listaHistorico" class="history-list"></ul>
-
       <div class="modal-actions">
         <button id="limparHistorico" type="button" class="btn-outline">
-          <i class="fas fa-trash-can"></i>
-          Limpar Historico
+          <i class="fas fa-trash-can"></i> Limpar Historico
         </button>
       </div>
     </div>
